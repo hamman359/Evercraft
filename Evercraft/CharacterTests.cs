@@ -6,15 +6,15 @@ public class CharacterTests
 {
     const string CHARACTER_NAME = "Bob";
 
-    readonly Character TestCharacter;
+    readonly Character _character;
 
     public CharacterTests() =>
-        TestCharacter = new Character(CHARACTER_NAME);
+        _character = new Character(CHARACTER_NAME);
 
     [Fact]
     public void CanCreateACharacterWithAName()
     {
-        TestCharacter.Name.Should().Be(CHARACTER_NAME);
+        _character.Name.Should().Be(CHARACTER_NAME);
     }
 
     [Fact]
@@ -22,50 +22,50 @@ public class CharacterTests
     {
         const string NEW_NAME = "Kevin";
 
-        TestCharacter.ChangeName(NEW_NAME);
+        _character.ChangeName(NEW_NAME);
 
-        TestCharacter.Name.Should().Be(NEW_NAME);
+        _character.Name.Should().Be(NEW_NAME);
     }
 
     [Fact]
     void CharacterHasAnAlignment()
     {
-        TestCharacter.Alignment.Should().NotBeNull();
+        _character.Alignment.Should().NotBeNull();
     }
 
     [Fact]
     void CanAssignCharacterAnAlignmentOfGood()
     {
-        TestCharacter.AssignGoodAlignment();
+        _character.AssignGoodAlignment();
 
-        TestCharacter.Alignment.Should().Be(Alignment.Good);
+        _character.Alignment.Should().Be(Alignment.Good);
     }
 
     [Fact]
     void CanAssignCharacterAnAlignmentOfEvil()
     {
-        TestCharacter.AssignEvilAlignment();
+        _character.AssignEvilAlignment();
 
-        TestCharacter.Alignment.Should().Be(Alignment.Evil);
+        _character.Alignment.Should().Be(Alignment.Evil);
     }
 
     [Fact]
     void CanAssignCharacterAnAlignmentOfNeutral()
     {
-        TestCharacter.AssignNeutralAlignment();
+        _character.AssignNeutralAlignment();
 
-        TestCharacter.Alignment.Should().Be(Alignment.Neutral);
+        _character.Alignment.Should().Be(Alignment.Neutral);
     }
 
     [Fact]
     void CharacterHasADefaultArmorClassOf10()
     {
-        TestCharacter.ArmorClass.Should().Be(10);
+        _character.ArmorClass.Should().Be(10);
     }
 
     [Fact]
     void CharacterHasADefaultHitPointsOf5()
     {
-        TestCharacter.Hitpoints.Should().Be(5);
+        _character.Hitpoints.Should().Be(5);
     }
 }

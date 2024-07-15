@@ -29,4 +29,16 @@
 
     public void AssignNeutralAlignment() =>
         Alignment = Alignment.Neutral;
+
+    public AttackResult Attack(int roll, Character toAttack)
+    {
+        if(roll >= toAttack.ArmorClass)
+        {
+            return AttackResult.Hit();
+        }
+        else
+        {
+            return AttackResult.Miss();
+        }
+    }
 }
