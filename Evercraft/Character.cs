@@ -3,13 +3,20 @@
     public Character(string name)
     {
         Name = name;
+        Alignment = Alignment.Neutral;
         ArmorClass = 10;
+        Hitpoints = 5;
     }
 
     public string Name { get; private set; }
 
     public Alignment Alignment { get; private set; }
+
+    // ENHANCEMENT: Make Value Object? Or possibly class to encapuslate any logic around AC?
     public int ArmorClass { get; private set; }
+
+    // ENHANCEMENT: Make Value Object? Or possibly class to encapuslate any logic around HP?
+    public int Hitpoints { get; private set; }
 
     public void ChangeName(string newName) =>
         Name = newName;

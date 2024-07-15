@@ -28,6 +28,12 @@ public class CharacterTests
     }
 
     [Fact]
+    void CharacterHasAnAlignment()
+    {
+        TestCharacter.Alignment.Should().NotBeNull();
+    }
+
+    [Fact]
     void CanAssignCharacterAnAlignmentOfGood()
     {
         TestCharacter.AssignGoodAlignment();
@@ -55,5 +61,11 @@ public class CharacterTests
     void CharacterHasADefaultArmorClassOf10()
     {
         TestCharacter.ArmorClass.Should().Be(10);
+    }
+
+    [Fact]
+    void CharacterHasADefaultHitPointsOf5()
+    {
+        TestCharacter.Hitpoints.Should().Be(5);
     }
 }
