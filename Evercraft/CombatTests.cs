@@ -63,6 +63,7 @@ public class CombatTests
 
         result.IsMiss.Should().Be(true);
         result.IsHit.Should().Be(false);
+        result.IsCritical.Should().Be(false);
     }
 
     [Theory]
@@ -77,6 +78,7 @@ public class CombatTests
         var result = _attacker.Attack(Roll.Create(20), _defender);
 
         result.IsHit.Should().Be(true);
+        result.IsCritical.Should().Be(true);
         result.IsMiss.Should().Be(false);
     }
 

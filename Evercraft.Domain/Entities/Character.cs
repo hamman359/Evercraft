@@ -1,4 +1,5 @@
-﻿using Evercraft.Domain.ValueObjects;
+﻿using Evercraft.Domain.Enums;
+using Evercraft.Domain.ValueObjects;
 
 namespace Evercraft.Domain.Entities;
 
@@ -11,6 +12,8 @@ public sealed class Character
         ArmorClass = 10;
         MaxHitPoints = 5;
         HitPoints = 5;
+        Strength = CharacterAttribute.Strength(10);
+        Dexterity = CharacterAttribute.Dexterity(10);
     }
 
     public string Name { get; private set; }
@@ -22,9 +25,14 @@ public sealed class Character
 
     // ENHANCEMENT: Make Value Object? Or possibly class to encapuslate any logic around HP?
     public int HitPoints { get; private set; }
+
     public int MaxHitPoints { get; private set; }
 
     public bool IsAlive => HitPoints > 0;
+
+    public CharacterAttribute Strength { get; internal set; }
+
+    public CharacterAttribute Dexterity { get; internal set; }
 
     public void ChangeName(string newName) =>
         Name = newName;
@@ -46,7 +54,7 @@ public sealed class Character
 
         if(roll.IsCrit)
         {
-            return AttackResult.Hit();
+            return AttackResult.CriticalHit();
         }
 
         if(roll.DieValue >= toAttack.ArmorClass)

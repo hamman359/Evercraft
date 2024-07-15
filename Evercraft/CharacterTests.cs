@@ -94,4 +94,10 @@ public class CharacterTests
 
         _character.IsAlive.Should().Be(false);
     }
+
+    [Fact]
+    void CharacterHasADefaultStrenghtOf10()
+    {
+        _character.Strength.Value.Should().Be(10);
+    }
 }

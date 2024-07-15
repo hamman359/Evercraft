@@ -1,5 +1,7 @@
 ﻿using Evercraft.Domain.Primatives;
 
+namespace Evercraft.Domain.Enums;
+
 public sealed class Alignment : Enumeration<Alignment>
 {
     public static readonly Alignment Good = new(1, "Good");
