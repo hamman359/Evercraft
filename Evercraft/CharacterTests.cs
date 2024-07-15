@@ -6,7 +6,7 @@ public class CharacterTests
 {
     const string CHARACTER_NAME = "Bob";
 
-    Character TestCharacter;
+    readonly Character TestCharacter;
 
     public CharacterTests() =>
         TestCharacter = new Character(CHARACTER_NAME);
@@ -49,5 +49,11 @@ public class CharacterTests
         TestCharacter.AssignNeutralAlignment();
 
         TestCharacter.Alignment.Should().Be(Alignment.Neutral);
+    }
+
+    [Fact]
+    void CharacterHasADefaultArmorClassOf10()
+    {
+        TestCharacter.ArmorClass.Should().Be(10);
     }
 }

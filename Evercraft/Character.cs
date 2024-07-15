@@ -3,11 +3,13 @@
     public Character(string name)
     {
         Name = name;
+        ArmorClass = 10;
     }
 
     public string Name { get; private set; }
 
     public Alignment Alignment { get; private set; }
+    public int ArmorClass { get; private set; }
 
     public void ChangeName(string newName) =>
         Name = newName;
