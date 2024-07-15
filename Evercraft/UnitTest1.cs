@@ -25,4 +25,14 @@ public class CharacterTests
 
         character.Name.Should().Be(NEW_NAME);
     }
+
+    [Fact]
+    void CanAssignACharacterAnAlignment()
+    {
+        var character = new Character(CHARACTER_NAME);
+
+        character.AssignAlignment("Good");
+
+        character.Alignment.Should().Be("Good");
+    }
 }

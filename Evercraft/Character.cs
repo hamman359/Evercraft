@@ -7,5 +7,9 @@
 
     public string Name { get; private set; }
 
+    public string Alignment { get; private set; }
+
     public void ChangeName(string newName) => Name = newName;
+
+    public void AssignAlignment(string alignment) => Alignment = alignment;
 }
