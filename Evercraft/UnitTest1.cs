@@ -6,33 +6,32 @@ public class CharacterTests
 {
     const string CHARACTER_NAME = "Bob";
 
+    Character TestCharacter;
+
+    public CharacterTests() =>
+        TestCharacter = new Character(CHARACTER_NAME);
+
     [Fact]
     public void CanCreateACharacterWithAName()
     {
-        var character = new Character(CHARACTER_NAME);
-
-        character.Name.Should().Be(CHARACTER_NAME);
+        TestCharacter.Name.Should().Be(CHARACTER_NAME);
     }
 
     [Fact]
     void CanChangeACharactersName()
     {
-        var character = new Character(CHARACTER_NAME);
-
         const string NEW_NAME = "Kevin";
 
-        character.ChangeName(NEW_NAME);
+        TestCharacter.ChangeName(NEW_NAME);
 
-        character.Name.Should().Be(NEW_NAME);
+        TestCharacter.Name.Should().Be(NEW_NAME);
     }
 
     [Fact]
     void CanAssignACharacterAnAlignment()
     {
-        var character = new Character(CHARACTER_NAME);
+        TestCharacter.AssignAlignment("Good");
 
-        character.AssignAlignment("Good");
-
-        character.Alignment.Should().Be("Good");
+        TestCharacter.Alignment.Should().Be("Good");
     }
 }
