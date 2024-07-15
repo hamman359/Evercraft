@@ -1,4 +1,6 @@
-﻿public class Character
+﻿namespace Evercraft;
+
+public sealed class Character
 {
     public Character(string name)
     {
@@ -33,13 +35,20 @@
     public void SetArmorClass(int ac) =>
         ArmorClass = ac;
 
-    public AttackResult Attack(int roll, Character toAttack)
+    public AttackResult Attack(Roll roll, Character toAttack)
     {
-        if(roll == 20)
-            return AttackResult.Hit();
 
-        return roll >= toAttack.ArmorClass
-            ? AttackResult.Hit()
-            : AttackResult.Miss();
+        if(roll.IsCrit)
+        {
+            return AttackResult.Hit();
+        }
+
+        if(roll.Value >= toAttack.ArmorClass)
+        {
+            return AttackResult.Hit();
+        }
+
+        return AttackResult.Miss();
     }
 }
+

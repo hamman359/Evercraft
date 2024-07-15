@@ -16,7 +16,7 @@ public class CombatTests
     [Fact]
     void CharacterCanAttack()
     {
-        var result = _attacher.Attack(10, _defender);
+        var result = _attacher.Attack(Roll.Create(10), _defender);
 
         result.Should().NotBeNull();
     }
@@ -34,7 +34,7 @@ public class CombatTests
     [InlineData(20)]
     void AttackRollThatBeatsDefendersACIsAHit(int roll)
     {
-        var result = _attacher.Attack(roll, _defender);
+        var result = _attacher.Attack(Roll.Create(roll), _defender);
 
         result.IsHit.Should().Be(true);
         result.IsMiss.Should().Be(false);
@@ -43,7 +43,7 @@ public class CombatTests
     [Fact]
     void AttackRollThatMatchesDefendersACIsAHit()
     {
-        var result = _attacher.Attack(10, _defender);
+        var result = _attacher.Attack(Roll.Create(10), _defender);
 
         result.IsHit.Should().Be(true);
         result.IsMiss.Should().Be(false);
@@ -61,7 +61,7 @@ public class CombatTests
     [InlineData(9)]
     void AttackRollThatDoesNotBeatDefendersACIsAMiss(int roll)
     {
-        var result = _attacher.Attack(roll, _defender);
+        var result = _attacher.Attack(Roll.Create(roll), _defender);
 
         result.IsMiss.Should().Be(true);
         result.IsHit.Should().Be(false);
@@ -76,7 +76,7 @@ public class CombatTests
     {
         _defender.SetArmorClass(defenderAC);
 
-        var result = _attacher.Attack(20, _defender);
+        var result = _attacher.Attack(Roll.Create(20), _defender);
 
         result.IsHit.Should().Be(true);
         result.IsMiss.Should().Be(false);

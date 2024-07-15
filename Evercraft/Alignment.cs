@@ -1,6 +1,6 @@
 ﻿using Evercraft;
 
-public class Alignment : Enumeration<Alignment>
+public sealed class Alignment : Enumeration<Alignment>
 {
     public static readonly Alignment Good = new(1, "Good");
     public static readonly Alignment Evil = new(2, "Evil");
