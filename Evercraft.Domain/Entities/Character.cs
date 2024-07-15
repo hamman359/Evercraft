@@ -1,4 +1,6 @@
-﻿namespace Evercraft;
+﻿using Evercraft.Domain.ValueObjects;
+
+namespace Evercraft.Domain.Entities;
 
 public sealed class Character
 {
@@ -7,7 +9,7 @@ public sealed class Character
         Name = name;
         Alignment = Alignment.Neutral;
         ArmorClass = 10;
-        Hitpoints = 5;
+        HitPoints = 5;
     }
 
     public string Name { get; private set; }
@@ -18,7 +20,7 @@ public sealed class Character
     public int ArmorClass { get; private set; }
 
     // ENHANCEMENT: Make Value Object? Or possibly class to encapuslate any logic around HP?
-    public int Hitpoints { get; private set; }
+    public int HitPoints { get; private set; }
 
     public void ChangeName(string newName) =>
         Name = newName;
@@ -43,7 +45,7 @@ public sealed class Character
             return AttackResult.Hit();
         }
 
-        if(roll.Value >= toAttack.ArmorClass)
+        if(roll.DieValue >= toAttack.ArmorClass)
         {
             return AttackResult.Hit();
         }
@@ -51,4 +53,3 @@ public sealed class Character
         return AttackResult.Miss();
     }
 }
-

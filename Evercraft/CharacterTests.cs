@@ -1,5 +1,3 @@
-using FluentAssertions;
-
 namespace Evercraft;
 
 public class CharacterTests
@@ -66,6 +64,6 @@ public class CharacterTests
     [Fact]
     void CharacterHasADefaultHitPointsOf5()
     {
-        _character.Hitpoints.Should().Be(5);
+        _character.HitPoints.Should().Be(5);
     }
 }

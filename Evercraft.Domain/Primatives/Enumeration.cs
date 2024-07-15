@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Evercraft;
+namespace Evercraft.Domain.Primatives;
 
 /// <summary>
 /// Represents an enumeration of objects with a unique numeric identifier and a name.

@@ -1,4 +1,4 @@
-﻿namespace Evercraft;
+﻿namespace Evercraft.Domain.Primatives;
 
 public abstract class ValueObject : IEquatable<ValueObject>
 {

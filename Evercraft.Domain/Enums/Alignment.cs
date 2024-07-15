@@ -1,4 +1,4 @@
-﻿using Evercraft;
+﻿using Evercraft.Domain.Primatives;
 
 public sealed class Alignment : Enumeration<Alignment>
 {
