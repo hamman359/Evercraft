@@ -12,6 +12,8 @@
 
     public bool IsCritical { get; private set; }
 
+    public int Damage => IsCritical ? 2 : 1;
+
     public static AttackResult Hit() => new(true, false);
 
     public static AttackResult CriticalHit() => new(true, true);

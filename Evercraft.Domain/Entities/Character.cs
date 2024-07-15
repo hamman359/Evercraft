@@ -64,8 +64,6 @@ public sealed class Character
             return;
         }
 
-        HitPoints = result.IsCritical
-            ? HitPoints - 2
-            : HitPoints - 1;
+        HitPoints -= result.Damage;
     }
 }
