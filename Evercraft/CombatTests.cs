@@ -79,4 +79,56 @@ public class CombatTests
         result.IsHit.Should().Be(true);
         result.IsMiss.Should().Be(false);
     }
+
+    [Fact]
+    void CharacterCanBeDamaged()
+    {
+        var result = AttackResult.Hit();
+
+        var startingHP = _defender.HitPoints;
+
+        _defender.TakeDamage(result);
+
+        _defender.HitPoints.Should().BeLessThan(startingHP);
+
+    }
+
+    [Fact]
+    void CharacterIsNotDamagedByMissedAttack()
+    {
+        var result = AttackResult.Miss();
+
+        var startingHP = _defender.HitPoints;
+
+        _defender.TakeDamage(result);
+
+        _defender.HitPoints.Should().Be(startingHP);
+
+    }
+
+    [Fact]
+    void CharacterTakes1PointOfDamagedOnSuccessfullAttack()
+    {
+        var result = AttackResult.Hit();
+
+        var startingHP = _defender.HitPoints;
+
+        _defender.TakeDamage(result);
+
+        _defender.HitPoints.Should().Be(startingHP - 1);
+
+    }
+
+    [Fact]
+    void CharacterTakesDoubleDamagedOnCriticalSuccessfullAttack()
+    {
+        var result = AttackResult.CriticalHit();
+
+        var startingHP = _defender.HitPoints;
+
+        _defender.TakeDamage(result);
+
+        _defender.HitPoints.Should().Be(startingHP - 2);
+
+    }
 }

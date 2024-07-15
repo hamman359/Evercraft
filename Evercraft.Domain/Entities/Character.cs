@@ -52,4 +52,16 @@ public sealed class Character
 
         return AttackResult.Miss();
     }
+
+    public void TakeDamage(AttackResult result)
+    {
+        if(result.IsMiss)
+        {
+            return;
+        }
+
+        HitPoints = result.IsCritical
+            ? HitPoints - 2
+            : HitPoints - 1;
+    }
 }
