@@ -28,10 +28,26 @@ public class CharacterTests
     }
 
     [Fact]
-    void CanAssignACharacterAnAlignment()
+    void CanAssignCharacterAnAlignmentOfGood()
     {
-        TestCharacter.AssignAlignment("Good");
+        TestCharacter.AssignGoodAlignment();
 
         TestCharacter.Alignment.Should().Be("Good");
+    }
+
+    [Fact]
+    void CanAssignCharacterAnAlignmentOfEvil()
+    {
+        TestCharacter.AssignEvilAlignment();
+
+        TestCharacter.Alignment.Should().Be("Evil");
+    }
+
+    [Fact]
+    void CanAssignCharacterAnAlignmentOfNeutral()
+    {
+        TestCharacter.AssignNeutralAlignment();
+
+        TestCharacter.Alignment.Should().Be("Neutral");
     }
 }

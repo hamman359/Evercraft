@@ -9,7 +9,15 @@
 
     public string Alignment { get; private set; }
 
-    public void ChangeName(string newName) => Name = newName;
+    public void ChangeName(string newName) =>
+        Name = newName;
 
-    public void AssignAlignment(string alignment) => Alignment = alignment;
+    public void AssignGoodAlignment() =>
+        Alignment = "Good";
+
+    public void AssignEvilAlignment() =>
+        Alignment = "Evil";
+
+    public void AssignNeutralAlignment() =>
+        Alignment = "Neutral";
 }
