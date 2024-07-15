@@ -21,10 +21,20 @@ public class CombatTests
         result.Should().NotBeNull();
     }
 
-    [Fact]
-    void AttackRollThatBeatsDefendersACIsAHit()
+    [Theory]
+    [InlineData(11)]
+    [InlineData(12)]
+    [InlineData(13)]
+    [InlineData(14)]
+    [InlineData(15)]
+    [InlineData(16)]
+    [InlineData(17)]
+    [InlineData(18)]
+    [InlineData(19)]
+    [InlineData(20)]
+    void AttackRollThatBeatsDefendersACIsAHit(int roll)
     {
-        var result = _attacher.Attack(15, _defender);
+        var result = _attacher.Attack(roll, _defender);
 
         result.IsHit.Should().Be(true);
         result.IsMiss.Should().Be(false);
@@ -39,12 +49,36 @@ public class CombatTests
         result.IsMiss.Should().Be(false);
     }
 
-    [Fact]
-    void AttackRollThatDoesNotBeatDefendersACIsAMiss()
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    [InlineData(3)]
+    [InlineData(4)]
+    [InlineData(5)]
+    [InlineData(6)]
+    [InlineData(7)]
+    [InlineData(8)]
+    [InlineData(9)]
+    void AttackRollThatDoesNotBeatDefendersACIsAMiss(int roll)
     {
-        var result = _attacher.Attack(5, _defender);
+        var result = _attacher.Attack(roll, _defender);
 
         result.IsMiss.Should().Be(true);
         result.IsHit.Should().Be(false);
+    }
+
+    [Theory]
+    [InlineData(10)]
+    [InlineData(15)]
+    [InlineData(20)]
+    [InlineData(25)]
+    void AttackRollThatIsANatural20AlwaysHits(int defenderAC)
+    {
+        _defender.SetArmorClass(defenderAC);
+
+        var result = _attacher.Attack(20, _defender);
+
+        result.IsHit.Should().Be(true);
+        result.IsMiss.Should().Be(false);
     }
 }

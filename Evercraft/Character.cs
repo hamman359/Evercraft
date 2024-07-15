@@ -30,15 +30,16 @@
     public void AssignNeutralAlignment() =>
         Alignment = Alignment.Neutral;
 
+    public void SetArmorClass(int ac) =>
+        ArmorClass = ac;
+
     public AttackResult Attack(int roll, Character toAttack)
     {
-        if(roll >= toAttack.ArmorClass)
-        {
+        if(roll == 20)
             return AttackResult.Hit();
-        }
-        else
-        {
-            return AttackResult.Miss();
-        }
+
+        return roll >= toAttack.ArmorClass
+            ? AttackResult.Hit()
+            : AttackResult.Miss();
     }
 }
