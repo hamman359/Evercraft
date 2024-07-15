@@ -66,4 +66,32 @@ public class CharacterTests
     {
         _character.HitPoints.Should().Be(5);
     }
+
+    [Fact]
+    void CharacterIsAlive()
+    {
+        _character.IsAlive.Should().Be(true);
+    }
+
+    [Fact]
+    void CharacterIsDeadWhenHitPointsAreZero()
+    {
+        while(_character.HitPoints > 0)
+        {
+            _character.TakeDamage(AttackResult.Hit());
+        }
+
+        _character.IsAlive.Should().Be(false);
+    }
+
+    [Fact]
+    void CharacterIsDeadWhenHitPointsAreBelowZero()
+    {
+        while(_character.HitPoints >= 0)
+        {
+            _character.TakeDamage(AttackResult.CriticalHit());
+        }
+
+        _character.IsAlive.Should().Be(false);
+    }
 }

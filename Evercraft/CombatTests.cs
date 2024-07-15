@@ -129,6 +129,5 @@ public class CombatTests
         _defender.TakeDamage(result);
 
         _defender.HitPoints.Should().Be(startingHP - 2);
-
     }
 }

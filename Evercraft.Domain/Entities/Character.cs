@@ -9,6 +9,7 @@ public sealed class Character
         Name = name;
         Alignment = Alignment.Neutral;
         ArmorClass = 10;
+        MaxHitPoints = 5;
         HitPoints = 5;
     }
 
@@ -21,6 +22,9 @@ public sealed class Character
 
     // ENHANCEMENT: Make Value Object? Or possibly class to encapuslate any logic around HP?
     public int HitPoints { get; private set; }
+    public int MaxHitPoints { get; private set; }
+
+    public bool IsAlive => HitPoints > 0;
 
     public void ChangeName(string newName) =>
         Name = newName;
