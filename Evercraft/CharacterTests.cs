@@ -32,7 +32,7 @@ public class CharacterTests
     {
         TestCharacter.AssignGoodAlignment();
 
-        TestCharacter.Alignment.Should().Be("Good");
+        TestCharacter.Alignment.Should().Be(Alignment.Good);
     }
 
     [Fact]
@@ -40,7 +40,7 @@ public class CharacterTests
     {
         TestCharacter.AssignEvilAlignment();
 
-        TestCharacter.Alignment.Should().Be("Evil");
+        TestCharacter.Alignment.Should().Be(Alignment.Evil);
     }
 
     [Fact]
@@ -48,6 +48,6 @@ public class CharacterTests
     {
         TestCharacter.AssignNeutralAlignment();
 
-        TestCharacter.Alignment.Should().Be("Neutral");
+        TestCharacter.Alignment.Should().Be(Alignment.Neutral);
     }
 }

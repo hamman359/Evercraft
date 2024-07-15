@@ -7,17 +7,17 @@
 
     public string Name { get; private set; }
 
-    public string Alignment { get; private set; }
+    public Alignment Alignment { get; private set; }
 
     public void ChangeName(string newName) =>
         Name = newName;
 
     public void AssignGoodAlignment() =>
-        Alignment = "Good";
+        Alignment = Alignment.Good;
 
     public void AssignEvilAlignment() =>
-        Alignment = "Evil";
+        Alignment = Alignment.Evil;
 
     public void AssignNeutralAlignment() =>
-        Alignment = "Neutral";
+        Alignment = Alignment.Neutral;
 }
