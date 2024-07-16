@@ -130,4 +130,65 @@ public class CharacterTests
     {
         _character.Charisma.Value.Should().Be(10);
     }
+
+    [Fact]
+    void CharacterStrangthMustBeBetween1And20()
+    {
+        Action act = () => _character.SetStrength(0);
+        act.Should().Throw<ArgumentOutOfRangeException>();
+
+        act = () => _character.SetStrength(21);
+        act.Should().Throw<ArgumentOutOfRangeException>();
+    }
+
+
+    [Fact]
+    void CharacterDexterityMustBeBetween1And20()
+    {
+        Action act = () => _character.SetDexterity(0);
+        act.Should().Throw<ArgumentOutOfRangeException>();
+
+        act = () => _character.SetDexterity(21);
+        act.Should().Throw<ArgumentOutOfRangeException>();
+    }
+
+    [Fact]
+    void CharacterConstitutionMustBeBetween1And20()
+    {
+        Action act = () => _character.SetConstitution(0);
+        act.Should().Throw<ArgumentOutOfRangeException>();
+
+        act = () => _character.SetConstitution(21);
+        act.Should().Throw<ArgumentOutOfRangeException>();
+    }
+
+    [Fact]
+    void CharacterWisdomMustBeBetween1And20()
+    {
+        Action act = () => _character.SetWisdom(0);
+        act.Should().Throw<ArgumentOutOfRangeException>();
+
+        act = () => _character.SetWisdom(21);
+        act.Should().Throw<ArgumentOutOfRangeException>();
+    }
+
+    [Fact]
+    void CharacterIntelligenceMustBeBetween1And20()
+    {
+        Action act = () => _character.SetIntelligence(0);
+        act.Should().Throw<ArgumentOutOfRangeException>();
+
+        act = () => _character.SetIntelligence(21);
+        act.Should().Throw<ArgumentOutOfRangeException>();
+    }
+
+    [Fact]
+    void CharacterCharismaMustBeBetween1And20()
+    {
+        Action act = () => _character.SetCharisma(0);
+        act.Should().Throw<ArgumentOutOfRangeException>();
+
+        act = () => _character.SetCharisma(21);
+        act.Should().Throw<ArgumentOutOfRangeException>();
+    }
 }

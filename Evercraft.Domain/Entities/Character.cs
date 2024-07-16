@@ -37,13 +37,13 @@ public sealed class Character
     public CharacterAttribute Strength { get; internal set; }
 
     public CharacterAttribute Dexterity { get; internal set; }
-    
+
     public CharacterAttribute Constitution { get; internal set; }
-    
+
     public CharacterAttribute Wisdom { get; internal set; }
-    
+
     public CharacterAttribute Intelligence { get; internal set; }
-    
+
     public CharacterAttribute Charisma { get; internal set; }
 
     public void ChangeName(string newName) =>
@@ -86,4 +86,22 @@ public sealed class Character
 
         HitPoints -= result.Damage;
     }
+
+    public void SetStrength(int value) =>
+        Strength = CharacterAttribute.Strength(value);
+
+    public void SetDexterity(int value) =>
+        Strength = CharacterAttribute.Dexterity(value);
+
+    public void SetConstitution(int value) =>
+        Strength = CharacterAttribute.Constitution(value);
+
+    public void SetWisdom(int value) =>
+        Strength = CharacterAttribute.Wisdom(value);
+
+    public void SetIntelligence(int value) =>
+        Strength = CharacterAttribute.Intelligence(value);
+
+    public void SetCharisma(int value) =>
+        Strength = CharacterAttribute.Charisma(value);
 }

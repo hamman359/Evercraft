@@ -5,8 +5,18 @@ namespace Evercraft.Domain.ValueObjects;
 
 public abstract class CharacterAttribute : ValueObject
 {
-    protected CharacterAttribute(int value, AttributeType attributeType)
+    public const int MinimumValue = 1;
+    public const int MaximumValue = 20;
+
+    protected CharacterAttribute(
+        int value,
+        AttributeType attributeType)
     {
+        if(value < MinimumValue || value > MaximumValue)
+        {
+            throw new ArgumentOutOfRangeException($"Value must be between {MinimumValue} and {MaximumValue}");
+        }
+
         Value = value;
         AttributeType = attributeType;
     }
