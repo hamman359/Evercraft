@@ -96,8 +96,38 @@ public class CharacterTests
     }
 
     [Fact]
-    void CharacterHasADefaultStrenghtOf10()
+    void CharacterHasADefaultStrengthOf10()
     {
         _character.Strength.Value.Should().Be(10);
+    }
+
+    [Fact]
+    void CharacterHasADefaultDexterityOf10()
+    {
+        _character.Dexterity.Value.Should().Be(10);
+    }
+
+    [Fact]
+    void CharacterHasADefaultConstitutionOf10()
+    {
+        _character.Constitution.Value.Should().Be(10);
+    }
+
+    [Fact]
+    void CharacterHasADefaultIntelligenceOf10()
+    {
+        _character.Intelligence.Value.Should().Be(10);
+    }
+
+    [Fact]
+    void CharacterHasADefaultWisdomOf10()
+    {
+        _character.Wisdom.Value.Should().Be(10);
+    }
+
+    [Fact]
+    void CharacterHasADefaultCharismaOf10()
+    {
+        _character.Charisma.Value.Should().Be(10);
     }
 }

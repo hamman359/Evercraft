@@ -14,6 +14,10 @@ public sealed class Character
         HitPoints = 5;
         Strength = CharacterAttribute.Strength(10);
         Dexterity = CharacterAttribute.Dexterity(10);
+        Constitution = CharacterAttribute.Constitution(10);
+        Intelligence = CharacterAttribute.Intelligence(10);
+        Wisdom = CharacterAttribute.Wisdom(10);
+        Charisma = CharacterAttribute.Charisma(10);
     }
 
     public string Name { get; private set; }
@@ -33,6 +37,14 @@ public sealed class Character
     public CharacterAttribute Strength { get; internal set; }
 
     public CharacterAttribute Dexterity { get; internal set; }
+    
+    public CharacterAttribute Constitution { get; internal set; }
+    
+    public CharacterAttribute Wisdom { get; internal set; }
+    
+    public CharacterAttribute Intelligence { get; internal set; }
+    
+    public CharacterAttribute Charisma { get; internal set; }
 
     public void ChangeName(string newName) =>
         Name = newName;
