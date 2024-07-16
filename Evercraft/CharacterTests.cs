@@ -191,4 +191,6 @@ public class CharacterTests
         act = () => _character.SetCharisma(21);
         act.Should().Throw<ArgumentOutOfRangeException>();
     }
+
+
 }
