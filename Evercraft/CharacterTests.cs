@@ -69,7 +69,7 @@ public class CharacterTests
     [Fact]
     void Character_Should_HaveADefaultHitPointsOf5()
     {
-        _character.HitPoints.Value.Should().Be(5);
+        _character.HitPoints.MaxHP.Should().Be(5);
     }
 
 

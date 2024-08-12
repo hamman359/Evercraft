@@ -4,25 +4,29 @@ namespace Evercraft.Domain;
 
 public class HitPoints : ValueObject
 {
-    HitPoints(int value)
+    HitPoints(int maxHP, int currentHP)
     {
-        Value = value;
+        MaxHP = maxHP;
+        CurrentHP = currentHP;
+
     }
 
-    public int Value { get; init; }
+    public int MaxHP { get; init; }
+
+    public int CurrentHP { get; init; }
 
     public override IEnumerable<object> GetAtomicValues()
     {
-        yield return Value;
+        yield return MaxHP;
     }
 
     public static HitPoints Create(int value)
     {
-        return new(value);
+        return new(value, value);
     }
 
     public HitPoints ApplyDamage(int damage)
     {
-        return new(Value - damage);
+        return new(MaxHP, MaxHP - damage);
     }
 }
