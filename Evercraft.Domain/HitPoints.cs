@@ -2,7 +2,7 @@
 
 namespace Evercraft.Domain;
 
-public class HitPoints : ValueObject
+public sealed class HitPoints : ValueObject
 {
     HitPoints(int maxHP, int currentHP)
     {
@@ -27,6 +27,6 @@ public class HitPoints : ValueObject
 
     public HitPoints ApplyDamage(int damage)
     {
-        return new(MaxHP, MaxHP - damage);
+        return new(MaxHP, CurrentHP - damage);
     }
 }

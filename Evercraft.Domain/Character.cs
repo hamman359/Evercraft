@@ -13,6 +13,8 @@ public sealed class Character
 
     public HitPoints HitPoints { get; private set; } = HitPoints.Create(5);
 
+    public bool IsAlive => HitPoints.CurrentHP > 0;
+
     public static Character Create()
     {
         return new();

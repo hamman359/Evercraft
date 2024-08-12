@@ -68,4 +68,35 @@ public class CombatTests
 
         _opponent.HitPoints.CurrentHP.Should().Be(originalHP.MaxHP - 2);
     }
+
+    [Fact]
+    void Character_Should_BeAliveIfHPIsAboveZero()
+    {
+        _attacker.HitPoints.CurrentHP.Should().BeGreaterThan(0);
+        _attacker.IsAlive.Should().BeTrue();
+    }
+
+    [Fact]
+    void Character_Should_NotBeAliveIfHPIsZero()
+    {
+        do
+        {
+            _opponent.ApplyDamage(AttackResult.Hit());
+        }
+        while(_opponent.HitPoints.CurrentHP != 0);
+
+        _opponent.IsAlive.Should().BeFalse();
+    }
+
+    [Fact]
+    void Character_Should_NotBeAliveIfHPBelowZero()
+    {
+        do
+        {
+            _opponent.ApplyDamage(AttackResult.CriticalHit());
+        }
+        while(_opponent.HitPoints.CurrentHP > 0);
+
+        _opponent.IsAlive.Should().BeFalse();
+    }
 }

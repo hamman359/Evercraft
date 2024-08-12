@@ -2,7 +2,7 @@
 
 namespace Evercraft.Domain;
 
-public class ArmorClass : ValueObject
+public sealed class ArmorClass : ValueObject
 {
     ArmorClass(int value)
     {
