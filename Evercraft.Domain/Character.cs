@@ -1,10 +1,12 @@
-﻿namespace Evercraft.Domain;
+﻿
+namespace Evercraft.Domain;
 
 public sealed class Character
 {
     Character() { }
 
     public string Name { get; private set; } = string.Empty;
+    public Alignment Alignment { get; private set; } = Alignment.Neutral;
 
     public static Character Create()
     {
@@ -14,6 +16,13 @@ public sealed class Character
     public Character SetName(string name)
     {
         Name = name;
+
+        return this;
+    }
+
+    public Character SetAlignment(Alignment alignment)
+    {
+        Alignment = alignment;
 
         return this;
     }

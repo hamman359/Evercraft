@@ -16,7 +16,6 @@ public class CharacterTests
     [Fact]
     void Character_Should_HaveAName()
     {
-
         _character.Name.Should().Be(CharacterName);
     }
 
@@ -29,5 +28,13 @@ public class CharacterTests
         _character.SetName(newName);
 
         _character.Name.Should().Be(newName);
+    }
+
+    [Fact]
+    void Character_Should_HaveAnAlignment()
+    {
+        _character.SetAlignment(Alignment.Neutral);
+
+        _character.Alignment.Should().NotBeNull();
     }
 }

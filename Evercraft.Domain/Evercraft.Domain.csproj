@@ -10,4 +10,9 @@
 	<ItemGroup>
 		<InternalsVisibleTo Include="Evercraft.Tests" />
 	</ItemGroup>
+
+
+	<ItemGroup>
+	  <PackageReference Include="KJWT.SharedKernel" Version="1.0.0" />
+	</ItemGroup>
 </Project>
