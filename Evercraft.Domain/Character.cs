@@ -31,4 +31,11 @@ public sealed class Character
 
         return this;
     }
+
+    public AttackResult Attack(Character opponent, Roll roll)
+    {
+        return roll.DieValue >= opponent.ArmorClass
+            ? AttackResult.Hit()
+            : AttackResult.Miss();
+    }
 }
