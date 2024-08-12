@@ -6,7 +6,12 @@ public sealed class Character
     Character() { }
 
     public string Name { get; private set; } = string.Empty;
+
     public Alignment Alignment { get; private set; } = Alignment.Neutral;
+
+    public int ArmorClass { get; private set; } = 10;
+
+    public int HitPoints { get; private set; } = 5;
 
     public static Character Create()
     {
@@ -27,4 +32,3 @@ public sealed class Character
         return this;
     }
 }
-

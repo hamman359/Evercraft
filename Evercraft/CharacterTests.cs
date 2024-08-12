@@ -59,4 +59,16 @@ public class CharacterTests
 
         _character.Alignment.Should().Be(Alignment.Evil);
     }
+
+    [Fact]
+    void Character_Should_HaveADefaultArmorClassOf10()
+    {
+        _character.ArmorClass.Should().Be(10);
+    }
+
+    [Fact]
+    void Character_Should_HaveADefaultHitPointsOf5()
+    {
+        _character.HitPoints.Should().Be(5);
+    }
 }
