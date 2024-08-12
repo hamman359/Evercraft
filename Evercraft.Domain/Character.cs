@@ -1,11 +1,10 @@
 ﻿namespace Evercraft.Domain;
 
-public class Character
+public sealed class Character
 {
-    public Character(string characterName)
-    {
-        Name = characterName;
-    }
+    public Character() { }
 
-    public string Name { get; private set; }
+    public string Name { get; private set; } = string.Empty;
+
+    public void SetName(string name) => Name = name;
 }
