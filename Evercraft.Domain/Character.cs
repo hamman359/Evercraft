@@ -9,9 +9,9 @@ public sealed class Character
 
     public Alignment Alignment { get; private set; } = Alignment.Neutral;
 
-    public int ArmorClass { get; private set; } = 10;
+    public ArmorClass ArmorClass { get; private set; } = ArmorClass.Create(10);
 
-    public int HitPoints { get; private set; } = 5;
+    public HitPoints HitPoints { get; private set; } = HitPoints.Create(5);
 
     public static Character Create()
     {
@@ -34,13 +34,13 @@ public sealed class Character
 
     public AttackResult Attack(Character opponent, Roll roll)
     {
-        return roll.DieValue >= opponent.ArmorClass
+        return roll.DieValue >= opponent.ArmorClass.Value
             ? AttackResult.Hit()
             : AttackResult.Miss();
     }
 
     public void ApplyDamage(AttackResult attackResult)
     {
-        HitPoints -= attackResult.Damage;
+        HitPoints = HitPoints.ApplyDamage(attackResult.Damage);
     }
 }

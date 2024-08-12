@@ -46,7 +46,7 @@ public class CombatTests
 
         _opponent.ApplyDamage(AttackResult.Hit());
 
-        _opponent.HitPoints.Should().BeLessThan(originalHP);
+        _opponent.HitPoints.Value.Should().BeLessThan(originalHP.Value);
     }
 
     [Fact]
@@ -66,6 +66,6 @@ public class CombatTests
 
         _opponent.ApplyDamage(AttackResult.CriticalHit());
 
-        _opponent.HitPoints.Should().Be(originalHP - 2);
+        _opponent.HitPoints.Value.Should().Be(originalHP.Value - 2);
     }
 }

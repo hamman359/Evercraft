@@ -63,13 +63,13 @@ public class CharacterTests
     [Fact]
     void Character_Should_HaveADefaultArmorClassOf10()
     {
-        _character.ArmorClass.Should().Be(10);
+        _character.ArmorClass.Value.Should().Be(10);
     }
 
     [Fact]
     void Character_Should_HaveADefaultHitPointsOf5()
     {
-        _character.HitPoints.Should().Be(5);
+        _character.HitPoints.Value.Should().Be(5);
     }
 
 
