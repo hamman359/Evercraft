@@ -38,4 +38,24 @@ public class CombatTests
         result.IsMiss.Should().BeTrue();
         result.IsHit.Should().BeFalse();
     }
+
+    [Fact]
+    void Character_Should_BeDamagedWhenEnemyAttackHits()
+    {
+        var originalHP = _opponent.HitPoints;
+
+        _opponent.ApplyDamage(AttackResult.Hit());
+
+        _opponent.HitPoints.Should().BeLessThan(originalHP);
+    }
+
+    [Fact]
+    void Character_Should_NotBeDamagedWhenEnemyAttackMisses()
+    {
+        var originalHP = _opponent.HitPoints;
+
+        _opponent.ApplyDamage(AttackResult.Miss());
+
+        _opponent.HitPoints.Should().Be(originalHP);
+    }
 }

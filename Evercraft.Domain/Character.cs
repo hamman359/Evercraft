@@ -38,4 +38,14 @@ public sealed class Character
             ? AttackResult.Hit()
             : AttackResult.Miss();
     }
+
+    public void ApplyDamage(AttackResult attackResult)
+    {
+        if(attackResult.IsMiss)
+        {
+            return;
+        }
+
+        HitPoints--;
+    }
 }
