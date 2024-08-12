@@ -1,6 +1,4 @@
-﻿using Evercraft.Domain;
-
-namespace Evercraft.Tests;
+﻿namespace Evercraft.Tests;
 public class CombatTests
 {
     readonly Character _attacker;
@@ -50,7 +48,7 @@ public class CombatTests
     }
 
     [Fact]
-    void Character_Should_NotBeDamagedWhenEnemyAttackMisses()
+    void Character_ShouldNot_BeDamagedWhenEnemyAttackMisses()
     {
         var originalHP = _opponent.HitPoints;
 
@@ -77,7 +75,7 @@ public class CombatTests
     }
 
     [Fact]
-    void Character_Should_NotBeAliveIfHPIsZero()
+    void Character_ShouldNot_BeAliveIfHPIsZero()
     {
         do
         {

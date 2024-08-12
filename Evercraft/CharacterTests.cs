@@ -1,6 +1,4 @@
-﻿using Evercraft.Domain;
-
-namespace Evercraft.Tests;
+﻿namespace Evercraft.Tests;
 
 public class CharacterTests
 {
@@ -18,7 +16,6 @@ public class CharacterTests
     {
         _character.Name.Should().Be(CharacterName);
     }
-
 
     [Fact]
     void Character_Should_BeAbleToChangeNames()
@@ -72,5 +69,82 @@ public class CharacterTests
         _character.HitPoints.MaxHP.Should().Be(5);
     }
 
+    [Fact]
+    void Character_Should_HaveADefaultStrenghtOf10()
+    {
+        _character.Strength.Value.Should().Be(10);
+    }
+
+    [Fact]
+    void Character_Should_HaveADefaultDexterityOf10()
+    {
+        _character.Dexterity.Value.Should().Be(10);
+    }
+
+    [Fact]
+    void Character_Should_HaveADefaultConstitutionOf10()
+    {
+        _character.Constitution.Value.Should().Be(10);
+    }
+
+    [Fact]
+    void Character_Should_HaveADefaultWisdomOf10()
+    {
+        _character.Wisdom.Value.Should().Be(10);
+    }
+
+    [Fact]
+    void Character_Should_HaveADefaultIntelligenceOf10()
+    {
+        _character.Intelligence.Value.Should().Be(10);
+    }
+
+    [Fact]
+    void Character_Should_HaveADefaultCharismaOf10()
+    {
+        _character.Charisma.Value.Should().Be(10);
+    }
+
+    [Fact]
+    void Character_Should_BeAbleToUpdateStrenght()
+    {
+        _character.SetStrength(15);
+        _character.Strength.Value.Should().Be(15);
+    }
+
+    [Fact]
+    void Character_Should_BeAbleToUpdateDexterity()
+    {
+        _character.SetDexterity(15);
+        _character.Dexterity.Value.Should().Be(15);
+    }
+
+    [Fact]
+    void Character_Should_BeAbleToUpdateConstitution()
+    {
+        _character.SetConstitution(15);
+        _character.Constitution.Value.Should().Be(15);
+    }
+
+    [Fact]
+    void Character_Should_BeAbleToUpdateWisdom()
+    {
+        _character.SetWisdom(15);
+        _character.Wisdom.Value.Should().Be(15);
+    }
+
+    [Fact]
+    void Character_Should_BeAbleToUpdateIntelligence()
+    {
+        _character.SetIntelligence(15);
+        _character.Intelligence.Value.Should().Be(15);
+    }
+
+    [Fact]
+    void Character_Should_BeAbleToUpdateCharisma()
+    {
+        _character.SetCharisma(15);
+        _character.Charisma.Value.Should().Be(15);
+    }
 
 }

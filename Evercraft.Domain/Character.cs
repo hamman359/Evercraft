@@ -57,4 +57,45 @@ public sealed class Character
     {
         HitPoints = HitPoints.ApplyDamage(attackResult.Damage);
     }
+    public Character SetStrength(int value)
+    {
+        Strength = CharacterAttribute.Create(AttributeType.Strength, value);
+
+        return this;
+    }
+
+    public Character SetDexterity(int value)
+    {
+        Dexterity = CharacterAttribute.Create(AttributeType.Dexterity, value);
+
+        return this;
+    }
+
+    public Character SetConstitution(int value)
+    {
+        Constitution = CharacterAttribute.Create(AttributeType.Constitution, value);
+
+        return this;
+    }
+
+    public Character SetWisdom(int value)
+    {
+        Wisdom = CharacterAttribute.Create(AttributeType.Wisdom, value);
+
+        return this;
+    }
+
+    public Character SetIntelligence(int value)
+    {
+        Intelligence = CharacterAttribute.Create(AttributeType.Intelligence, value);
+
+        return this;
+    }
+
+    public Character SetCharisma(int value)
+    {
+        Charisma = CharacterAttribute.Create(AttributeType.Charisma, value);
+
+        return this;
+    }
 }
