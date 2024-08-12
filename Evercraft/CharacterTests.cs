@@ -33,8 +33,30 @@ public class CharacterTests
     [Fact]
     void Character_Should_HaveAnAlignment()
     {
+        _character.Alignment.Should().NotBeNull();
+    }
+
+    [Fact]
+    void Character_Should_BeAbleToHaveAGoodAlignment()
+    {
+        _character.SetAlignment(Alignment.Good);
+
+        _character.Alignment.Should().Be(Alignment.Good);
+    }
+
+    [Fact]
+    void Character_Should_BeAbleToHaveANeutralAlignment()
+    {
         _character.SetAlignment(Alignment.Neutral);
 
-        _character.Alignment.Should().NotBeNull();
+        _character.Alignment.Should().Be(Alignment.Neutral);
+    }
+
+    [Fact]
+    void Character_Should_BeAbleToHaveAEvilAlignment()
+    {
+        _character.SetAlignment(Alignment.Evil);
+
+        _character.Alignment.Should().Be(Alignment.Evil);
     }
 }
