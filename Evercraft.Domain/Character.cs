@@ -2,9 +2,20 @@
 
 public sealed class Character
 {
-    public Character() { }
+    Character() { }
 
     public string Name { get; private set; } = string.Empty;
 
-    public void SetName(string name) => Name = name;
+    public static Character Create()
+    {
+        return new();
+    }
+
+    public Character SetName(string name)
+    {
+        Name = name;
+
+        return this;
+    }
 }
+

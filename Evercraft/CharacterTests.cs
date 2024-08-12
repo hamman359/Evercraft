@@ -9,9 +9,8 @@ public class CharacterTests
 
     public CharacterTests()
     {
-        _character = new Character();
-
-        _character.SetName(CharacterName);
+        _character = Character.Create()
+            .SetName(CharacterName);
     }
 
     [Fact]
