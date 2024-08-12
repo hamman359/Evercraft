@@ -41,13 +41,6 @@ public sealed class Character
 
     public void ApplyDamage(AttackResult attackResult)
     {
-        if(attackResult.IsMiss)
-        {
-            return;
-        }
-
-        _ = attackResult.IsCritical
-            ? HitPoints -= 2
-            : HitPoints--;
+        HitPoints -= attackResult.Damage;
     }
 }
