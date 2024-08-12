@@ -23,10 +23,27 @@ public class CharacterAttributeTests
     [InlineData(18, 4)]
     [InlineData(19, 4)]
     [InlineData(20, 5)]
-    void AttributesShouldHaveCorrectModifiers(
+    void CharacterAttributes_Should_HaveCorrectModifiers(
        int value,
        int modifier)
     {
         CharacterAttribute.Create(AttributeType.Strength, value).Modifier.Should().Be(modifier);
+    }
+
+    [Fact]
+    void CharacterAttributes_ShouldNot_BeAbleToBeBelowOne()
+    {
+        Action act = () => CharacterAttribute.Create(AttributeType.Strength, 0);
+
+        act.Should().Throw<ArgumentOutOfRangeException>();
+    }
+
+
+    [Fact]
+    void CharacterAttributes_ShouldNot_BeAbleToBeAbove20()
+    {
+        Action act = () => CharacterAttribute.Create(AttributeType.Strength, 21);
+
+        act.Should().Throw<ArgumentOutOfRangeException>();
     }
 }
