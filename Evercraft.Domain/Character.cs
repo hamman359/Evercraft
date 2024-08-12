@@ -15,6 +15,18 @@ public sealed class Character
 
     public bool IsAlive => HitPoints.CurrentHP > 0;
 
+    public CharacterAttribute Strength { get; private set; } = CharacterAttribute.Create(AttributeType.Strength, 10);
+
+    public CharacterAttribute Dexterity { get; private set; } = CharacterAttribute.Create(AttributeType.Dexterity, 10);
+
+    public CharacterAttribute Constitution { get; private set; } = CharacterAttribute.Create(AttributeType.Constitution, 10);
+
+    public CharacterAttribute Wisdom { get; private set; } = CharacterAttribute.Create(AttributeType.Wisdom, 10);
+
+    public CharacterAttribute Intelligence { get; private set; } = CharacterAttribute.Create(AttributeType.Intelligence, 10);
+
+    public CharacterAttribute Charisma { get; private set; } = CharacterAttribute.Create(AttributeType.Charisma, 10);
+
     public static Character Create()
     {
         return new();
