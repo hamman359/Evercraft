@@ -58,4 +58,14 @@ public class CombatTests
 
         _opponent.HitPoints.Should().Be(originalHP);
     }
+
+    [Fact]
+    void Character_Should_TakeDoubleDamagedWhenEnemyAttackCriticalHits()
+    {
+        var originalHP = _opponent.HitPoints;
+
+        _opponent.ApplyDamage(AttackResult.CriticalHit());
+
+        _opponent.HitPoints.Should().Be(originalHP - 2);
+    }
 }

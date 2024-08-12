@@ -46,6 +46,8 @@ public sealed class Character
             return;
         }
 
-        HitPoints--;
+        _ = attackResult.IsCritical
+            ? HitPoints -= 2
+            : HitPoints--;
     }
 }
