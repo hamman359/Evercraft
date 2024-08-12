@@ -5,28 +5,30 @@ namespace Evercraft.Tests;
 public class CharacterTests
 {
     const string CharacterName = "Bob";
+    readonly Character _character;
+
+    public CharacterTests()
+    {
+        _character = new Character();
+
+        _character.SetName(CharacterName);
+    }
 
     [Fact]
     void Character_Should_HaveAName()
     {
-        Character character = new();
 
-        character.SetName(CharacterName);
-
-        character.Name.Should().Be(CharacterName);
+        _character.Name.Should().Be(CharacterName);
     }
+
 
     [Fact]
     void Character_Should_BeAbleToChangeNames()
     {
-        Character character = new();
-
-        character.SetName(CharacterName);
-
         var newName = "Kevin";
 
-        character.SetName(newName);
+        _character.SetName(newName);
 
-        character.Name.Should().Be(newName);
+        _character.Name.Should().Be(newName);
     }
 }
