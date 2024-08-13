@@ -2,12 +2,12 @@
 
 namespace Evercraft.Domain;
 
-public class CharacterAttribute : ValueObject
+public abstract class CharacterAttribute : ValueObject
 {
     public const int MinimumValue = 1;
     public const int MaximumValue = 20;
 
-    readonly Dictionary<int, int> _modifierLookup = new Dictionary<int, int>
+    protected readonly Dictionary<int, int> _modifierLookup = new Dictionary<int, int>
     {
         { 1, -5 },
         { 2, -4 },
@@ -31,8 +31,9 @@ public class CharacterAttribute : ValueObject
         { 20, 5 }
     };
 
+    protected readonly List<ModificationRule> _modificationRules = new();
 
-    CharacterAttribute(
+    protected CharacterAttribute(
         AttributeType attributeType,
         int value)
     {
@@ -52,14 +53,36 @@ public class CharacterAttribute : ValueObject
         yield return AttributeType;
     }
 
-    public static CharacterAttribute Create(AttributeType type, int value)
+    protected static void ValidateValue(int value)
     {
-
+        //TODO: Modify to return a result instead of throw an exception
         if(value < MinimumValue || value > MaximumValue)
         {
             throw new ArgumentOutOfRangeException($"Value must be between {MinimumValue} and {MaximumValue}");
         }
+    }
 
-        return new(type, value);
+    public void ApplyModificationRules(List<ModificationRule> rules)
+    {
+        foreach(var rule in _modificationRules)
+        {
+            if(rule.IsUniqueRule)
+            {
+                RemoveExistingRule(rules, rule);
+            }
+
+            rules.Add(rule);
+        }
+
+        static void RemoveExistingRule(List<ModificationRule> rules, ModificationRule rule)
+        {
+            var toRemove = rules.Find(r => r.GetType() == rule.GetType());
+
+            if(toRemove is not null)
+            {
+                //This rule already exists and should be replaced
+                rules.Remove(toRemove);
+            }
+        }
     }
 }

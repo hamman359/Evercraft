@@ -27,13 +27,13 @@ public class CharacterAttributeTests
        int value,
        int modifier)
     {
-        CharacterAttribute.Create(AttributeType.Strength, value).Modifier.Should().Be(modifier);
+        StrengthCharacterAttribute.Create(value).Modifier.Should().Be(modifier);
     }
 
     [Fact]
     void CharacterAttributes_ShouldNot_BeAbleToBeBelowOne()
     {
-        Action act = () => CharacterAttribute.Create(AttributeType.Strength, 0);
+        Action act = () => StrengthCharacterAttribute.Create(0);
 
         act.Should().Throw<ArgumentOutOfRangeException>();
     }
@@ -42,7 +42,7 @@ public class CharacterAttributeTests
     [Fact]
     void CharacterAttributes_ShouldNot_BeAbleToBeAbove20()
     {
-        Action act = () => CharacterAttribute.Create(AttributeType.Strength, 21);
+        Action act = () => StrengthCharacterAttribute.Create(21);
 
         act.Should().Throw<ArgumentOutOfRangeException>();
     }
