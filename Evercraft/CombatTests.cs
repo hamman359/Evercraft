@@ -1,6 +1,4 @@
-﻿using Evercraft.Domain;
-
-namespace Evercraft.Tests;
+﻿namespace Evercraft.Tests;
 public class CombatTests
 {
     readonly Character _attacker;
@@ -44,17 +42,17 @@ public class CombatTests
     {
         var originalHP = _opponent.HitPoints;
 
-        _opponent.ApplyDamage(AttackResult.Hit());
+        _opponent.ApplyDamage(AttackResult.Create(Roll.Create(15), _opponent, new()));
 
         _opponent.HitPoints.CurrentHP.Should().BeLessThan(originalHP.MaxHP);
     }
 
     [Fact]
-    void Character_Should_NotBeDamagedWhenEnemyAttackMisses()
+    void Character_ShouldNot_BeDamagedWhenEnemyAttackMisses()
     {
         var originalHP = _opponent.HitPoints;
 
-        _opponent.ApplyDamage(AttackResult.Miss());
+        _opponent.ApplyDamage(AttackResult.Create(Roll.Create(5), _opponent, new()));
 
         _opponent.HitPoints.Should().Be(originalHP);
     }
@@ -64,7 +62,7 @@ public class CombatTests
     {
         var originalHP = _opponent.HitPoints;
 
-        _opponent.ApplyDamage(AttackResult.CriticalHit());
+        _opponent.ApplyDamage(AttackResult.Create(Roll.Create(20), _opponent, new()));
 
         _opponent.HitPoints.CurrentHP.Should().Be(originalHP.MaxHP - 2);
     }
@@ -77,11 +75,11 @@ public class CombatTests
     }
 
     [Fact]
-    void Character_Should_NotBeAliveIfHPIsZero()
+    void Character_ShouldNot_BeAliveIfHPIsZero()
     {
         do
         {
-            _opponent.ApplyDamage(AttackResult.Hit());
+            _opponent.ApplyDamage(AttackResult.Create(Roll.Create(15), _opponent, new()));
         }
         while(_opponent.HitPoints.CurrentHP != 0);
 
@@ -93,7 +91,7 @@ public class CombatTests
     {
         do
         {
-            _opponent.ApplyDamage(AttackResult.CriticalHit());
+            _opponent.ApplyDamage(AttackResult.Create(Roll.Create(20), _opponent, new()));
         }
         while(_opponent.HitPoints.CurrentHP > 0);
 

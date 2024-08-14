@@ -1,31 +1,48 @@
 ﻿
+using Evercraft.Domain.AbilityModifiers;
+using Evercraft.Domain.CharacterAttributes;
+
 namespace Evercraft.Domain;
 
 public sealed class Character
 {
-    Character() { }
+    Character()
+    {
+        SetName(string.Empty);
+        SetAlignment(Alignment.Neutral);
+        SetArmorClass(10);
+        SetHitPoints(5);
+        SetStrength(10);
+        SetDexterity(10);
+        SetConstitution(10);
+        SetWisdom(10);
+        SetIntelligence(10);
+        SetCharisma(10);
+    }
 
-    public string Name { get; private set; } = string.Empty;
+    public string Name { get; private set; }
 
-    public Alignment Alignment { get; private set; } = Alignment.Neutral;
+    public Alignment Alignment { get; private set; }
 
-    public ArmorClass ArmorClass { get; private set; } = ArmorClass.Create(10);
+    public ArmorClass ArmorClass { get; private set; }
 
-    public HitPoints HitPoints { get; private set; } = HitPoints.Create(5);
+    public HitPoints HitPoints { get; private set; }
 
     public bool IsAlive => HitPoints.CurrentHP > 0;
 
-    public CharacterAttribute Strength { get; private set; } = CharacterAttribute.Create(AttributeType.Strength, 10);
+    public CharacterAttribute Strength { get; private set; }
 
-    public CharacterAttribute Dexterity { get; private set; } = CharacterAttribute.Create(AttributeType.Dexterity, 10);
+    public CharacterAttribute Dexterity { get; private set; }
 
-    public CharacterAttribute Constitution { get; private set; } = CharacterAttribute.Create(AttributeType.Constitution, 10);
+    public CharacterAttribute Constitution { get; private set; }
 
-    public CharacterAttribute Wisdom { get; private set; } = CharacterAttribute.Create(AttributeType.Wisdom, 10);
+    public CharacterAttribute Wisdom { get; private set; }
 
-    public CharacterAttribute Intelligence { get; private set; } = CharacterAttribute.Create(AttributeType.Intelligence, 10);
+    public CharacterAttribute Intelligence { get; private set; }
 
-    public CharacterAttribute Charisma { get; private set; } = CharacterAttribute.Create(AttributeType.Charisma, 10);
+    public CharacterAttribute Charisma { get; private set; }
+
+    private readonly List<ModificationRule> _modificationRules = new();
 
     public static Character Create()
     {
@@ -46,15 +63,77 @@ public sealed class Character
         return this;
     }
 
+    void SetArmorClass(int value)
+    {
+        ArmorClass = ArmorClass.Create(value, _modificationRules);
+    }
+
+    void SetHitPoints(int value)
+    {
+        HitPoints = HitPoints.Create(value, _modificationRules);
+    }
+
     public AttackResult Attack(Character opponent, Roll roll)
     {
-        return roll.DieValue >= opponent.ArmorClass.Value
-            ? AttackResult.Hit()
-            : AttackResult.Miss();
+        roll.ApplyModifiers(_modificationRules.GetModifiersToApply(ModificationType.AttackRoll));
+
+        return AttackResult.Create(roll, opponent, _modificationRules);
     }
 
     public void ApplyDamage(AttackResult attackResult)
     {
-        HitPoints = HitPoints.ApplyDamage(attackResult.Damage);
+        HitPoints = HitPoints.ApplyDamage(attackResult.Damage, _modificationRules);
+    }
+
+    public Character SetStrength(int value)
+    {
+        Strength = StrengthCharacterAttribute.Create(value);
+
+        _modificationRules.ApplyModificationRules(Strength.ModificationRules);
+
+        return this;
+    }
+
+    public Character SetDexterity(int value)
+    {
+        Dexterity = DexterityCharacterAttribute.Create(value);
+
+        _modificationRules.ApplyModificationRules(Dexterity.ModificationRules);
+
+        SetArmorClass(ArmorClass.BaseValue);
+
+        return this;
+    }
+
+    public Character SetConstitution(int value)
+    {
+        Constitution = ConstitutionCharacterAttribute.Create(value);
+
+        _modificationRules.ApplyModificationRules(Constitution.ModificationRules);
+
+        SetHitPoints(HitPoints.MaxHP);
+
+        return this;
+    }
+
+    public Character SetWisdom(int value)
+    {
+        Wisdom = WisdomCharacterAttribute.Create(value);
+
+        return this;
+    }
+
+    public Character SetIntelligence(int value)
+    {
+        Intelligence = StrengthCharacterAttribute.Create(value);
+
+        return this;
+    }
+
+    public Character SetCharisma(int value)
+    {
+        Charisma = CharismaCharacterAttribute.Create(value);
+
+        return this;
     }
 }

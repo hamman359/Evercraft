@@ -1,13 +1,15 @@
-﻿using KJWT.SharedKernel.Primatives;
+﻿using Evercraft.Domain.AbilityModifiers;
 
-namespace Evercraft.Domain;
+using KJWT.SharedKernel.Primatives;
 
-public class CharacterAttribute : ValueObject
+namespace Evercraft.Domain.CharacterAttributes;
+
+public abstract class CharacterAttribute : ValueObject
 {
     public const int MinimumValue = 1;
     public const int MaximumValue = 20;
 
-    readonly Dictionary<int, int> _modifierLookup = new Dictionary<int, int>
+    protected readonly Dictionary<int, int> _modifierLookup = new Dictionary<int, int>
     {
         { 1, -5 },
         { 2, -4 },
@@ -31,8 +33,11 @@ public class CharacterAttribute : ValueObject
         { 20, 5 }
     };
 
+    protected readonly List<ModificationRule> _modificationRules = new();
 
-    CharacterAttribute(
+    public IReadOnlyCollection<ModificationRule> ModificationRules => _modificationRules;
+
+    protected CharacterAttribute(
         AttributeType attributeType,
         int value)
     {
@@ -52,14 +57,12 @@ public class CharacterAttribute : ValueObject
         yield return AttributeType;
     }
 
-    public static CharacterAttribute Create(AttributeType type, int value)
+    protected static void ValidateValue(int value)
     {
-
+        //TODO: Modify to return a result instead of throw an exception
         if(value < MinimumValue || value > MaximumValue)
         {
             throw new ArgumentOutOfRangeException($"Value must be between {MinimumValue} and {MaximumValue}");
         }
-
-        return new(type, value);
     }
 }

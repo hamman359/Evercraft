@@ -1,4 +1,6 @@
-﻿namespace Evercraft.Tests;
+﻿using Evercraft.Domain.CharacterAttributes;
+
+namespace Evercraft.Tests;
 
 public class CharacterAttributeTests
 {
@@ -23,10 +25,27 @@ public class CharacterAttributeTests
     [InlineData(18, 4)]
     [InlineData(19, 4)]
     [InlineData(20, 5)]
-    void AttributesShouldHaveCorrectModifiers(
+    void CharacterAttributes_Should_HaveCorrectModifiers(
        int value,
        int modifier)
     {
-        CharacterAttribute.Create(AttributeType.Strength, value).Modifier.Should().Be(modifier);
+        StrengthCharacterAttribute.Create(value).Modifier.Should().Be(modifier);
+    }
+
+    [Fact]
+    void CharacterAttributes_ShouldNot_BeAbleToBeBelowOne()
+    {
+        Action act = () => StrengthCharacterAttribute.Create(0);
+
+        act.Should().Throw<ArgumentOutOfRangeException>();
+    }
+
+
+    [Fact]
+    void CharacterAttributes_ShouldNot_BeAbleToBeAbove20()
+    {
+        Action act = () => StrengthCharacterAttribute.Create(21);
+
+        act.Should().Throw<ArgumentOutOfRangeException>();
     }
 }
