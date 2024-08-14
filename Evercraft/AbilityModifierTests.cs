@@ -57,4 +57,5 @@ public class AbilityModifierTests
 
         character.ArmorClass.ModifiedValue.Should().Be(12);
     }
+
 }

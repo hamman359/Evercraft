@@ -100,7 +100,7 @@ public sealed class Character
 
         _modificationRules.ApplyModificationRules(Dexterity.ModificationRules);
 
-        SetArmorClass(ArmorClass.ModifiedValue);
+        SetArmorClass(ArmorClass.BaseValue);
 
         return this;
     }
