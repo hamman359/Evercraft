@@ -4,7 +4,7 @@ public enum ModificationType
 {
     AttackRoll,
     Damage,
-    CriticalHit,
+    CriticalHitDamage,
     ArmorClass,
     HitPoints
 }

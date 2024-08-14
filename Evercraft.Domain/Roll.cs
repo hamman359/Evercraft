@@ -6,6 +6,7 @@ public sealed class Roll : ValueObject
     Roll(int dieValue)
     {
         DieValue = dieValue;
+        ModifiedValue = DieValue;
     }
 
     public int DieValue { get; init; }
@@ -24,8 +25,6 @@ public sealed class Roll : ValueObject
 
     public void ApplyModifiers(List<ModificationRule> modifications)
     {
-        ModifiedValue = DieValue;
-
         foreach(ModificationRule rule in modifications)
         {
             ModifiedValue = rule.Rule(DieValue);

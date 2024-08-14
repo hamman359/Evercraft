@@ -6,6 +6,7 @@ public sealed class StrengthCharacterAttribute : CharacterAttribute
         : base(AttributeType.Strength, value)
     {
         _modificationRules.Add(new StrengthAttackRollModifierRule(Modifier));
+        _modificationRules.Add(new StrengthDamageModifierRule(Modifier));
     }
 
     public static StrengthCharacterAttribute Create(int value)

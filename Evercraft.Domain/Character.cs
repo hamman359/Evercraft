@@ -71,13 +71,9 @@ public sealed class Character
 
     public AttackResult Attack(Character opponent, Roll roll)
     {
-        List<ModificationRule> modifications = _modificationRules.Where(x => x.ModificationType == ModificationType.AttackRoll).ToList();
+        roll.ApplyModifiers(_modificationRules.GetModifiersToApply(ModificationType.AttackRoll));
 
-        roll.ApplyModifiers(modifications);
-
-        return roll.ModifiedValue >= opponent.ArmorClass.Value
-            ? AttackResult.Hit()
-            : AttackResult.Miss();
+        return AttackResult.Create(roll, opponent, _modificationRules);
     }
 
     public void ApplyDamage(AttackResult attackResult)

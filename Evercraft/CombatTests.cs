@@ -42,7 +42,7 @@ public class CombatTests
     {
         var originalHP = _opponent.HitPoints;
 
-        _opponent.ApplyDamage(AttackResult.Hit());
+        _opponent.ApplyDamage(AttackResult.Create(Roll.Create(15), _opponent, new()));
 
         _opponent.HitPoints.CurrentHP.Should().BeLessThan(originalHP.MaxHP);
     }
@@ -52,7 +52,7 @@ public class CombatTests
     {
         var originalHP = _opponent.HitPoints;
 
-        _opponent.ApplyDamage(AttackResult.Miss());
+        _opponent.ApplyDamage(AttackResult.Create(Roll.Create(5), _opponent, new()));
 
         _opponent.HitPoints.Should().Be(originalHP);
     }
@@ -62,7 +62,7 @@ public class CombatTests
     {
         var originalHP = _opponent.HitPoints;
 
-        _opponent.ApplyDamage(AttackResult.CriticalHit());
+        _opponent.ApplyDamage(AttackResult.Create(Roll.Create(20), _opponent, new()));
 
         _opponent.HitPoints.CurrentHP.Should().Be(originalHP.MaxHP - 2);
     }
@@ -79,7 +79,7 @@ public class CombatTests
     {
         do
         {
-            _opponent.ApplyDamage(AttackResult.Hit());
+            _opponent.ApplyDamage(AttackResult.Create(Roll.Create(15), _opponent, new()));
         }
         while(_opponent.HitPoints.CurrentHP != 0);
 
@@ -91,7 +91,7 @@ public class CombatTests
     {
         do
         {
-            _opponent.ApplyDamage(AttackResult.CriticalHit());
+            _opponent.ApplyDamage(AttackResult.Create(Roll.Create(20), _opponent, new()));
         }
         while(_opponent.HitPoints.CurrentHP > 0);
 

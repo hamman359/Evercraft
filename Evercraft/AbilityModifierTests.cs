@@ -13,4 +13,16 @@ public class AbilityModifierTests
 
         result.IsHit.Should().BeTrue();
     }
+
+    [Fact]
+    void CharactersStrength_Should_BeAddedToDamage()
+    {
+        Character attacker = Character.Create().SetStrength(15);
+
+        Character opponent = Character.Create();
+
+        AttackResult result = attacker.Attack(opponent, Roll.Create(15));
+
+        result.Damage.Should().Be(3);
+    }
 }
