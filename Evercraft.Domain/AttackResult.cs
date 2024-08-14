@@ -26,17 +26,20 @@ public class AttackResult : ValueObject
             {
                 var criticalDamageMods = rules.GetModifiersToApply(ModificationType.CriticalHitDamage);
 
-                return damage * 2;
+                damage = damage * 2;
             }
-
-            var damageMods = rules.GetModifiersToApply(ModificationType.Damage);
-
-            foreach(ModificationRule mod in damageMods)
+            else
             {
-                damage = mod.Rule(damage);
+
+                foreach(var mod in rules.GetModifiersToApply(ModificationType.Damage))
+                {
+                    damage = mod.Rule(damage);
+                }
             }
 
-            return damage;
+            return damage >= 1
+                ? damage
+                : 1;
         }
     }
 
