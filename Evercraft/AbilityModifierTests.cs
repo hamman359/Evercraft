@@ -58,4 +58,19 @@ public class AbilityModifierTests
         character.ArmorClass.ModifiedValue.Should().Be(12);
     }
 
+    [Fact]
+    void CharactersConstitutionModifier_Should_BeAddedToHitPoints()
+    {
+        Character character = Character.Create().SetConstitution(15);
+
+        character.HitPoints.MaxHP.Should().Be(7);
+    }
+
+    [Fact]
+    void CharacterHitPOints_Should_BeAMinimumOf1()
+    {
+        Character character = Character.Create().SetConstitution(1);
+
+        character.HitPoints.MaxHP.Should().Be(1);
+    }
 }

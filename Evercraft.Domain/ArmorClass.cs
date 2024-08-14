@@ -11,7 +11,7 @@ public sealed class ArmorClass : ValueObject
         BaseValue = value;
         ModifiedValue = BaseValue;
 
-        foreach(var rule in rules)
+        foreach(var rule in rules.Where(x => x.ModificationType == ModificationType.ArmorClass))
         {
             ModifiedValue = rule.Rule(ModifiedValue);
         }

@@ -70,7 +70,7 @@ public sealed class Character
 
     void SetHitPoints(int value)
     {
-        HitPoints = HitPoints.Create(value);
+        HitPoints = HitPoints.Create(value, _modificationRules);
     }
 
     public AttackResult Attack(Character opponent, Roll roll)
@@ -82,7 +82,7 @@ public sealed class Character
 
     public void ApplyDamage(AttackResult attackResult)
     {
-        HitPoints = HitPoints.ApplyDamage(attackResult.Damage);
+        HitPoints = HitPoints.ApplyDamage(attackResult.Damage, _modificationRules);
     }
 
     public Character SetStrength(int value)
@@ -108,6 +108,10 @@ public sealed class Character
     public Character SetConstitution(int value)
     {
         Constitution = ConstitutionCharacterAttribute.Create(value);
+
+        _modificationRules.ApplyModificationRules(Constitution.ModificationRules);
+
+        SetHitPoints(HitPoints.MaxHP);
 
         return this;
     }
