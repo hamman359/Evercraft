@@ -71,7 +71,7 @@ public class AttackResult : ValueObject
         Character opponent,
         List<ModificationRule> rules)
     {
-        if(roll.ModifiedValue < opponent.ArmorClass.Value) //Miss
+        if(roll.ModifiedValue < opponent.ArmorClass.ModifiedValue) //Miss
         {
             return new(false, false, rules);
         }

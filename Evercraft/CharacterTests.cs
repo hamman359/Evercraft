@@ -60,7 +60,7 @@ public class CharacterTests
     [Fact]
     void Character_Should_HaveADefaultArmorClassOf10()
     {
-        _character.ArmorClass.Value.Should().Be(10);
+        _character.ArmorClass.ModifiedValue.Should().Be(10);
     }
 
     [Fact]

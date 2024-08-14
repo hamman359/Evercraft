@@ -1,4 +1,6 @@
-﻿namespace Evercraft.Tests;
+﻿using Evercraft.Domain.CharacterAttributes;
+
+namespace Evercraft.Tests;
 
 public class CharacterAttributeTests
 {

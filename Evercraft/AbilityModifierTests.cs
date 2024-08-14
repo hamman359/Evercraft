@@ -49,4 +49,12 @@ public class AbilityModifierTests
 
         result.Damage.Should().Be(10);//Default Damage(1) + Strength Modifier * 2(2 * 2) * 2
     }
+
+    [Fact]
+    void CharactersDexterityModifier_Should_BeAddedToArmorClass()
+    {
+        Character character = Character.Create().SetDexterity(15);
+
+        character.ArmorClass.ModifiedValue.Should().Be(12);
+    }
 }

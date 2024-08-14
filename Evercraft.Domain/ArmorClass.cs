@@ -1,23 +1,34 @@
-﻿using KJWT.SharedKernel.Primatives;
+﻿using Evercraft.Domain.AbilityModifiers;
+
+using KJWT.SharedKernel.Primatives;
 
 namespace Evercraft.Domain;
 
 public sealed class ArmorClass : ValueObject
 {
-    ArmorClass(int value)
+    ArmorClass(int value, List<ModificationRule> rules)
     {
-        Value = value;
+        BaseValue = value;
+        ModifiedValue = BaseValue;
+
+        foreach(var rule in rules)
+        {
+            ModifiedValue = rule.Rule(ModifiedValue);
+        }
     }
 
-    public int Value { get; init; }
+    public int ModifiedValue { get; init; }
+
+    public int BaseValue { get; init; }
 
     public override IEnumerable<object> GetAtomicValues()
     {
-        yield return Value;
+        yield return BaseValue;
+        yield return ModifiedValue;
     }
 
-    public static ArmorClass Create(int value)
+    public static ArmorClass Create(int value, List<ModificationRule> rules)
     {
-        return new(value);
+        return new(value, rules);
     }
 }

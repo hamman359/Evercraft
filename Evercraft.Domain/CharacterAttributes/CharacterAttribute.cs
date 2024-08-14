@@ -35,6 +35,8 @@ public abstract class CharacterAttribute : ValueObject
 
     protected readonly List<ModificationRule> _modificationRules = new();
 
+    public IReadOnlyCollection<ModificationRule> ModificationRules => _modificationRules;
+
     protected CharacterAttribute(
         AttributeType attributeType,
         int value)
@@ -61,30 +63,6 @@ public abstract class CharacterAttribute : ValueObject
         if(value < MinimumValue || value > MaximumValue)
         {
             throw new ArgumentOutOfRangeException($"Value must be between {MinimumValue} and {MaximumValue}");
-        }
-    }
-
-    public void ApplyModificationRules(List<ModificationRule> rules)
-    {
-        foreach(var rule in _modificationRules)
-        {
-            if(rule.IsUniqueRule)
-            {
-                RemoveExistingRule(rules, rule);
-            }
-
-            rules.Add(rule);
-        }
-
-        static void RemoveExistingRule(List<ModificationRule> rules, ModificationRule rule)
-        {
-            var toRemove = rules.Find(r => r.GetType() == rule.GetType());
-
-            if(toRemove is not null)
-            {
-                //This rule already exists and should be replaced
-                rules.Remove(toRemove);
-            }
         }
     }
 }

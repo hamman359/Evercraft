@@ -62,9 +62,10 @@ public sealed class Character
 
         return this;
     }
+
     void SetArmorClass(int value)
     {
-        ArmorClass = ArmorClass.Create(value);
+        ArmorClass = ArmorClass.Create(value, _modificationRules);
     }
 
     void SetHitPoints(int value)
@@ -88,7 +89,7 @@ public sealed class Character
     {
         Strength = StrengthCharacterAttribute.Create(value);
 
-        Strength.ApplyModificationRules(_modificationRules);
+        _modificationRules.ApplyModificationRules(Strength.ModificationRules);
 
         return this;
     }
@@ -96,6 +97,10 @@ public sealed class Character
     public Character SetDexterity(int value)
     {
         Dexterity = DexterityCharacterAttribute.Create(value);
+
+        _modificationRules.ApplyModificationRules(Dexterity.ModificationRules);
+
+        SetArmorClass(ArmorClass.ModifiedValue);
 
         return this;
     }
@@ -116,7 +121,7 @@ public sealed class Character
 
     public Character SetIntelligence(int value)
     {
-        Intelligence = IntelligenceCharacterAttribute.Create(value);
+        Intelligence = StrengthCharacterAttribute.Create(value);
 
         return this;
     }
