@@ -3,7 +3,7 @@
 public class AbilityModifierTests
 {
     [Fact]
-    void CharactersStrength_Should_BeAddedToAttackRoll()
+    void CharactersStrengthModifier_Should_BeAddedToAttackRoll()
     {
         Character attacker = Character.Create().SetStrength(15);
 
@@ -15,7 +15,7 @@ public class AbilityModifierTests
     }
 
     [Fact]
-    void CharactersStrength_Should_BeAddedToDamage()
+    void CharactersStrengthModifier_Should_BeAddedToDamage()
     {
         Character attacker = Character.Create().SetStrength(15);
 
@@ -23,7 +23,7 @@ public class AbilityModifierTests
 
         AttackResult result = attacker.Attack(opponent, Roll.Create(15));
 
-        result.Damage.Should().Be(3);
+        result.Damage.Should().Be(3); //Default Damage(1) + Strength Modifier(2)
     }
 
     [Fact]
@@ -36,5 +36,17 @@ public class AbilityModifierTests
         AttackResult result = attacker.Attack(opponent, Roll.Create(15));
 
         result.Damage.Should().Be(1);
+    }
+
+    [Fact]
+    void CharactersStrengthModifier_Should_BeDoubledWhenAddedToCriticalHitDamage()
+    {
+        Character attacker = Character.Create().SetStrength(15);
+
+        Character opponent = Character.Create();
+
+        AttackResult result = attacker.Attack(opponent, Roll.Create(20));
+
+        result.Damage.Should().Be(10);//Default Damage(1) + Strength Modifier * 2(2 * 2) * 2
     }
 }

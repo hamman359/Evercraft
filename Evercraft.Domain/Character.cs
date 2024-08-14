@@ -1,4 +1,7 @@
 ﻿
+using Evercraft.Domain.AbilityModifiers;
+using Evercraft.Domain.CharacterAttributes;
+
 namespace Evercraft.Domain;
 
 public sealed class Character

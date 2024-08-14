@@ -1,4 +1,6 @@
-﻿using KJWT.SharedKernel.Primatives;
+﻿using Evercraft.Domain.AbilityModifiers;
+
+using KJWT.SharedKernel.Primatives;
 
 namespace Evercraft.Domain;
 
@@ -24,7 +26,10 @@ public class AttackResult : ValueObject
 
             if(IsCritical)
             {
-                var criticalDamageMods = rules.GetModifiersToApply(ModificationType.CriticalHitDamage);
+                foreach(var mod in rules.GetModifiersToApply(ModificationType.CriticalHitDamage))
+                {
+                    damage = mod.Rule(damage);
+                }
 
                 damage = damage * 2;
             }

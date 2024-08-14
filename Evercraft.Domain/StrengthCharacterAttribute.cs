@@ -1,4 +1,7 @@
-﻿namespace Evercraft.Domain;
+﻿using Evercraft.Domain.AbilityModifiers;
+using Evercraft.Domain.CharacterAttributes;
+
+namespace Evercraft.Domain;
 
 public sealed class StrengthCharacterAttribute : CharacterAttribute
 {
@@ -7,6 +10,7 @@ public sealed class StrengthCharacterAttribute : CharacterAttribute
     {
         _modificationRules.Add(new StrengthAttackRollModifierRule(Modifier));
         _modificationRules.Add(new StrengthDamageModifierRule(Modifier));
+        _modificationRules.Add(new StrengthCriticalHitDamageModifierRule(Modifier));
     }
 
     public static StrengthCharacterAttribute Create(int value)

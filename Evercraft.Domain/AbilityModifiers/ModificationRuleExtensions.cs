@@ -1,5 +1,4 @@
-﻿
-namespace Evercraft.Domain;
+﻿namespace Evercraft.Domain.AbilityModifiers;
 
 public static class ModificationRuleExtensions
 {

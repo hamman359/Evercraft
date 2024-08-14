@@ -1,6 +1,8 @@
-﻿using KJWT.SharedKernel.Primatives;
+﻿using Evercraft.Domain.AbilityModifiers;
 
-namespace Evercraft.Domain;
+using KJWT.SharedKernel.Primatives;
+
+namespace Evercraft.Domain.CharacterAttributes;
 
 public abstract class CharacterAttribute : ValueObject
 {

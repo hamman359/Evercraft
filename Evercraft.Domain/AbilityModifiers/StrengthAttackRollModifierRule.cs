@@ -1,4 +1,4 @@
-﻿namespace Evercraft.Domain;
+﻿namespace Evercraft.Domain.AbilityModifiers;
 
 public sealed record StrengthAttackRollModifierRule
     : ModificationRule

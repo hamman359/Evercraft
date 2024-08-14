@@ -1,4 +1,6 @@
-﻿using KJWT.SharedKernel.Primatives;
+﻿using Evercraft.Domain.AbilityModifiers;
+
+using KJWT.SharedKernel.Primatives;
 
 namespace Evercraft.Domain;
 public sealed class Roll : ValueObject
